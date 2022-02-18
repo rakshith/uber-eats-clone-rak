@@ -1,5 +1,4 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
 import tw from "twrnc";
 
 const HeadeTabs = ({ activeTab, setActiveTab }) => {
