@@ -3,12 +3,13 @@ import React from "react";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import tw from "twrnc";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
+import { GOOGLE_MAPS_APIKEY } from "@env";
 
 const SearchBar = ({ cityHandler }) => {
   return (
     <View style={tw`mt-5 flex-row`}>
       <GooglePlacesAutocomplete
-        query={{ key: "AIzaSyBmsV29GZbUN3DpvQDtMy-R8eVFIZfxQpo" }}
+        query={{ key: GOOGLE_MAPS_APIKEY }}
         onPress={(data, details = null) => {
           const city = data.description.split(",")[0];
           cityHandler(city);
