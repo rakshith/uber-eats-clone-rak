@@ -3,6 +3,7 @@ import React from "react";
 import tw from "twrnc";
 import { Divider } from "react-native-elements";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
+import { useDispatch } from "react-redux";
 
 const foods = [
   {
@@ -48,7 +49,18 @@ const menuItemStyle = tw`flex-row justify-between mx-4 mt-8`;
 
 const dividerStyle = tw`mx-4`;
 
-const MenuItem = () => {
+const MenuItem = ({ restaurantName }) => {
+  const dispatch = useDispatch();
+  const selectItem = (item, checkboxValue) =>
+    dispatch({
+      type: "ADD_TO_CART",
+      payload: {
+        ...item,
+        restaurantName: restaurantName,
+        checkboxValue: checkboxValue,
+      },
+    });
+
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       {foods.map((food, index) => (
@@ -60,6 +72,7 @@ const MenuItem = () => {
                 borderColor: "lightgray",
                 borderRadius: "0",
               }}
+              onPress={(checkboxValue) => selectItem(food, checkboxValue)}
             />
             <FoodInfo food={food} />
             <FoodImage food={food} />
