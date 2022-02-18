@@ -36,28 +36,22 @@ export const localRestaurants = [
   },
 ];
 
-const RestaurantItem = () => {
+const RestaurantItems = ({ restaurantData }) => {
   return (
     <>
-      {
-        (console.log("data", localRestaurants.length),
-        localRestaurants.map((restaurant) => (
-          <TouchableOpacity keyExtractor={(item) => item.id} activeOpacity={1}>
-            <View style={tw`bg-white mt-2 p-4`}>
-              <RestaurantImage image={restaurant.image_url} />
-              <RestaurantInfo
-                name={restaurant.name}
-                rating={restaurant.rating}
-              />
-            </View>
-          </TouchableOpacity>
-        )))
-      }
+      {restaurantData.map((restaurant, index) => (
+        <TouchableOpacity key={index} activeOpacity={1}>
+          <View style={tw`bg-white mt-2 p-4`}>
+            <RestaurantImage image={restaurant.image_url} />
+            <RestaurantInfo name={restaurant.name} rating={restaurant.rating} />
+          </View>
+        </TouchableOpacity>
+      ))}
     </>
   );
 };
 
-export default RestaurantItem;
+export default RestaurantItems;
 
 const RestaurantImage = ({ image }) => (
   <>
