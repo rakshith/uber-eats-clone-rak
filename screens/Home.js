@@ -25,13 +25,13 @@ const Home = () => {
 
     return fetch(yelpUrl, apiOptions)
       .then((res) => res.json())
-      .then((json) =>
+      .then((json) => {
         setRestaurantData(
           json.businesses.filter((business) =>
             business.transactions.includes(activeTab.toLowerCase())
           )
-        )
-      );
+        );
+      });
   };
 
   useEffect(() => {
@@ -41,7 +41,7 @@ const Home = () => {
   return (
     <SafeAreaView style={tw`bg-gray-300 h-full`}>
       <View style={tw`bg-white p-4`}>
-        <HeadeTabs />
+        <HeadeTabs activeTab={activeTab} setActiveTab={setActiveTab} />
         <SearchBar cityHandler={setCity} />
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>

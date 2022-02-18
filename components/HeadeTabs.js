@@ -2,9 +2,7 @@ import { View, Text, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import tw from "twrnc";
 
-const HeadeTabs = () => {
-  const [activeTab, setActiveTab] = useState("Delivery");
-
+const HeadeTabs = ({ activeTab, setActiveTab }) => {
   return (
     <View style={tw`flex-row justify-center`}>
       <HeaderButton
