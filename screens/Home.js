@@ -3,6 +3,7 @@ import React from "react";
 import HeadeTabs from "../components/HeadeTabs";
 import tw from "twrnc";
 import SearchBar from "../components/SearchBar";
+import Categories from "../components/Categories";
 
 const Home = () => {
   return (
@@ -11,6 +12,7 @@ const Home = () => {
         <HeadeTabs />
         <SearchBar />
       </View>
+      <Categories />
     </SafeAreaView>
   );
 };
