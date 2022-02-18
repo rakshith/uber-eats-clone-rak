@@ -3,7 +3,7 @@ import React from "react";
 import tw from "twrnc";
 import { Divider } from "react-native-elements";
 import About from "../components/restaurantDetail/About";
-import MenuItem from "../components/restaurantDetail/MenuItems";
+import MenuItems from "../components/restaurantDetail/MenuItems";
 import ViewCart from "../components/restaurantDetail/ViewCart";
 
 const RestaurantDetail = ({ route, navigation }) => {
@@ -11,7 +11,7 @@ const RestaurantDetail = ({ route, navigation }) => {
     <View>
       <About route={route} />
       <Divider width={1.8} style={tw`mt-2`} />
-      <MenuItem restaurantName={route.params.name} />
+      <MenuItems restaurantName={route.params.name} />
       <ViewCart navigation={navigation} restaurantName={route.params.name} />
     </View>
   );
