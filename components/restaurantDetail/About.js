@@ -2,16 +2,6 @@ import { View, Text, Image } from "react-native";
 import React from "react";
 import tw from "twrnc";
 
-const props = {
-  name: "Farmhouse Kitchen Thai Cuisine",
-  image:
-    "https://www.inquirer.com/resizer/lcgslm42PfXfWtibEmsuvv9DVzk=/0x0:2938x1960/760x507/filters:format(webp)/cloudfront-us-east-1.images.arcpublishing.com/pmn/X5OWNSGUDZBNZBOYH277R5MZMY.jpg",
-  reviews: "1500",
-  price: "$$",
-  rating: 4.5,
-  categories: [{ title: "Thai" }, { title: "Comfort Food" }],
-};
-
 const About = ({ route }) => {
   const { name, image, price, reviews, rating, categories } = route.params;
 
