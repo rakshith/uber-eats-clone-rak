@@ -43,7 +43,7 @@ const Categories = () => {
               source={item.image}
               style={[tw`w-14 h-10`, { resizeMode: "contain" }]}
             />
-            <Text style={tw`font-sm font-black`}>{item.text}</Text>
+            <Text style={tw`text-sm font-black`}>{item.text}</Text>
           </View>
         ))}
       </ScrollView>
