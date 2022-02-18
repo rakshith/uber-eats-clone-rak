@@ -8,6 +8,8 @@ import RestaurantItems, {
   localRestaurants,
 } from "../components/RestaurantItems";
 import { YELP_API_KEY } from "@env";
+import { Divider } from "react-native-elements";
+import BottomTabs from "../components/BottomTabs";
 
 const Home = () => {
   const [restaurantData, setRestaurantData] = useState(localRestaurants);
@@ -48,6 +50,9 @@ const Home = () => {
         <Categories />
         <RestaurantItems restaurantData={restaurantData} />
       </ScrollView>
+
+      <Divider width={1} />
+      <BottomTabs />
     </SafeAreaView>
   );
 };
