@@ -7,9 +7,7 @@ import Categories from "../components/Categories";
 import RestaurantItems, {
   localRestaurants,
 } from "../components/RestaurantItems";
-
-const YELP_API_KEY =
-  "o8vu80YfXKGgSXdFzeDzSyNvzGKO7bK9NFBNeSz7vb0UCTYWXby2My-TU4cDLTKB2ufscV10EpWlAtea5V3zZiLksIe6b7ROJ7uFHp9TBEg06b-J2tLkGnR7PIYPYnYx";
+import { YELP_API_KEY } from "@env";
 
 const Home = () => {
   const [restaurantData, setRestaurantData] = useState(localRestaurants);
