@@ -13,7 +13,7 @@ const YELP_API_KEY =
 
 const Home = () => {
   const [restaurantData, setRestaurantData] = useState(localRestaurants);
-  const [city, setCity] = useState("Hollywood");
+  const [city, setCity] = useState("San Francisco");
   const [activeTab, setActiveTab] = useState("Delivery");
 
   const getRestaurantsFromYelp = () => {
@@ -44,7 +44,7 @@ const Home = () => {
     <SafeAreaView style={tw`bg-gray-300 h-full`}>
       <View style={tw`bg-white p-4`}>
         <HeadeTabs />
-        <SearchBar />
+        <SearchBar cityHandler={setCity} />
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Categories />
