@@ -17,15 +17,22 @@ const ViewCart = ({ navigation, restaurantName }) => {
   console.log(totalUSD);
 
   return (
-    <View style={tw`flex-row absolute justify-center bottom-30 z-999`}>
-      <View style={tw`flex-row justify-center w-full`}>
-        <TouchableOpacity
-          style={tw`bg-black items-center p-2 rounded-50 relative w-80`}
-        >
-          <Text style={tw`text-white text-lg`}>{restaurantName}</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+    <>
+      {total ? (
+        <View style={tw`flex-row absolute justify-center bottom-30 z-999`}>
+          <View style={tw`flex-row justify-center w-full`}>
+            <TouchableOpacity
+              style={tw`flex-row bg-black justify-end items-center p-2 rounded-50 relative w-80`}
+            >
+              <Text style={tw`text-white text-lg mr-4`}>View Cart</Text>
+              <Text style={tw`text-white text-lg mr-2`}>{totalUSD}</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      ) : (
+        <></>
+      )}
+    </>
   );
 };
 
