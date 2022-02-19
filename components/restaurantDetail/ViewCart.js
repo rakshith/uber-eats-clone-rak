@@ -6,9 +6,11 @@ import { Modal } from "react-native";
 import OrderItem from "./OrderItem";
 import { db } from "../../firebase/firebase";
 import { collection, serverTimestamp, addDoc } from "@firebase/firestore";
+import AnimatedLottieView from "lottie-react-native";
 
 const ViewCart = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [loading, setLoading] = useState(false);
   const { items, restaurantName } = useSelector(
     (state) => state.cartReducer.selectedItems
   );
@@ -23,13 +25,18 @@ const ViewCart = ({ navigation }) => {
   });
 
   const addOrderToFirebase = () => {
+    setLoading(true);
+    setModalVisible(false);
     addDoc(collection(db, "orders"), {
       items: items,
       restaurantName: restaurantName,
       createdAt: serverTimestamp(),
+    }).then(() => {
+      setTimeout(() => {
+        setLoading(false);
+        navigation.navigate("OrderCompleted");
+      }, 2500);
     });
-
-    setModalVisible(false);
   };
 
   const modalContainer = tw`
@@ -107,6 +114,20 @@ const ViewCart = ({ navigation }) => {
               <Text style={tw`text-white text-sm mr-2`}>{totalUSD}</Text>
             </TouchableOpacity>
           </View>
+        </View>
+      ) : (
+        <></>
+      )}
+      {loading ? (
+        <View
+          style={tw`bg-black bg-opacity-60 justify-center items-center absolute h-full w-full`}
+        >
+          <AnimatedLottieView
+            style={tw`h-40`}
+            source={require("../../assets/animations/scanner.json")}
+            autoPlay
+            speed={3}
+          />
         </View>
       ) : (
         <></>
