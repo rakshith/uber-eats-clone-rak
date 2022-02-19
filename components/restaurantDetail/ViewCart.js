@@ -4,6 +4,8 @@ import tw from "twrnc";
 import { useSelector } from "react-redux";
 import { Modal } from "react-native";
 import OrderItem from "./OrderItem";
+import { db } from "../../firebase/firebase";
+import { collection, serverTimestamp, addDoc } from "@firebase/firestore";
 
 const ViewCart = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -19,6 +21,16 @@ const ViewCart = ({ navigation }) => {
     style: "currency",
     currency: "USD",
   });
+
+  const addOrderToFirebase = () => {
+    addDoc(collection(db, "orders"), {
+      items: items,
+      restaurantName: restaurantName,
+      createdAt: serverTimestamp(),
+    });
+
+    setModalVisible(false);
+  };
 
   const modalContainer = tw`
     flex-1 justify-end bg-black bg-opacity-60 
@@ -56,7 +68,7 @@ const ViewCart = ({ navigation }) => {
             <View style={tw`flex-row justify-center`}>
               <TouchableOpacity
                 style={tw` mt-2 bg-black justify-center items-center rounded-12 w-60 py-3`}
-                onPress={() => setModalVisible(false)}
+                onPress={addOrderToFirebase}
               >
                 <Text
                   style={tw`text-white  items-center font-semibold text-sm`}
@@ -88,11 +100,11 @@ const ViewCart = ({ navigation }) => {
         <View style={tw`flex-row absolute justify-center bottom-50 z-999`}>
           <View style={tw`flex-row justify-center w-full`}>
             <TouchableOpacity
-              style={tw`flex-row bg-black justify-end items-center p-2 rounded-50 relative w-60`}
+              style={tw`flex-row bg-black justify-end items-center p-2 rounded-50 relative w-50`}
               onPress={() => setModalVisible(true)}
             >
-              <Text style={tw`text-white text-lg mr-4`}>View Cart</Text>
-              <Text style={tw`text-white text-lg mr-2`}>{totalUSD}</Text>
+              <Text style={tw`text-white text-sm mr-4`}>View Cart</Text>
+              <Text style={tw`text-white text-sm mr-2`}>{totalUSD}</Text>
             </TouchableOpacity>
           </View>
         </View>
